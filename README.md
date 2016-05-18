@@ -17,8 +17,9 @@
 ## 手动安装（Cordova > v5.1.1）
 使用git命令将插件下载到本地，并标记为$CORDOVA_PLUGIN_DIR
 
-   *git clone https://github.com/wangxiaochuan366/cordova_alipay.git && cd cordova-plugin-alipay && export CORDOVA_PLUGIN_DIR=$(pwd)
-   *cordova plugin add $CORDOVA_PLUGIN_DIR --variable PARTNER_ID=[你的商户PID可以在账户中查询] --variable SELLER_ACCOUNT=[你的商户支付宝帐号]
+*git clone https://github.com/wangxiaochuan366/cordova_alipay.git && cd cordova-plugin-alipay && export CORDOVA_PLUGIN_DIR=$(pwd)
+
+*cordova plugin add $CORDOVA_PLUGIN_DIR --variable PARTNER_ID=[你的商户PID可以在账户中查询] --variable SELLER_ACCOUNT=[你的商户支付宝帐号]
 
 **注意**：PRIVATE_KEY的值是生成的私钥的**内容**，要求是*PKCS*格式，需要去掉——BEGIN PRIVAT KEY——和——END PRIVATE KEY——，以及*空格*和*换行*。关于私钥的说明详见下面<a href='#关于私钥'>关于私钥</a>部分
 
@@ -38,7 +39,7 @@ window.alipay.pay(  这里填写从服务端获取的签名 , function(successRe
 
 // 成功
 {
-	resultStatus: "9000",
+	resultStatus: "9000"
 }
 ```
 
@@ -47,6 +48,7 @@ window.alipay.pay(  这里填写从服务端获取的签名 , function(successRe
 	memo: "用户中途取消", 
 	resultStatus: "6001", 
 }
+
 ```
 
 * resultStatus的含义请参照这个官方文档：[客户端返回码](https://doc.open.alipay.com/doc2/detail?treeId=59&articleId=103671&docType=1)
