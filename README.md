@@ -20,7 +20,7 @@
 
 ## 使用方法
 ```
-window.alipay.pay( 下单后从服务端返回的sign等信息, function(successResults){alert(successResults)}, function(errorResults){alert(errorResults)});
+window.alipay.pay(下单后从服务端返回的sign等信息, function(successResults){alert(successResults)}, function(errorResults){alert(errorResults)});
 ```
 **注意**:由于使用的客服端生成签名，所以在调用pay方法之前，先ajax从服务端获取签名，然后在获取的签名放在pay方法里，然后会调出支付宝
 
