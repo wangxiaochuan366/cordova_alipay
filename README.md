@@ -1,6 +1,6 @@
 感谢这位大神在Github上开源了这款插件https://github.com/charleyw/cordova-plugin-alipay
 本插件在此基础上做了些许修改（从服务端获取签名，调用支付宝）,如果使用者使用客服端生成签名，请参考上方GitHub地址
-======
+
 
 ## 最新更新
 
@@ -16,9 +16,9 @@
 
 ## 手动安装（Cordova > v5.1.1）
 使用git命令将插件下载到本地，并标记为$CORDOVA_PLUGIN_DIR
-   1：git clone https://github.com/wangxiaochuan366/cordova_alipay.git && cd cordova-plugin-alipay && export CORDOVA_PLUGIN_DIR=$(pwd)
-   2：cordova plugin add $CORDOVA_PLUGIN_DIR --variable PARTNER_ID=[你的商户PID可以在账户中查询] --variable SELLER_ACCOUNT=[你的商户支付宝帐号]
 
+   *git clone https://github.com/wangxiaochuan366/cordova_alipay.git && cd cordova-plugin-alipay && export CORDOVA_PLUGIN_DIR=$(pwd)
+   *cordova plugin add $CORDOVA_PLUGIN_DIR --variable PARTNER_ID=[你的商户PID可以在账户中查询] --variable SELLER_ACCOUNT=[你的商户支付宝帐号]
 
 **注意**：PRIVATE_KEY的值是生成的私钥的**内容**，要求是*PKCS*格式，需要去掉——BEGIN PRIVAT KEY——和——END PRIVATE KEY——，以及*空格*和*换行*。关于私钥的说明详见下面<a href='#关于私钥'>关于私钥</a>部分
 
@@ -35,11 +35,13 @@ window.alipay.pay(  这里填写从服务端获取的签名 , function(successRe
 `successResults`和`errorResults`分别是成功和失败之后支付宝SDK返回的结果，类似如下内容
 
 ```
+
 // 成功
 {
 	resultStatus: "9000",
 }
 ```
+
 // 用户取消
 {
 	memo: "用户中途取消", 
