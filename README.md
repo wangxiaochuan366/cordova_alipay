@@ -28,11 +28,12 @@ window.alipay.pay(  这里填写从服务端获取的签名 , function(successRe
 ### 参数说明
 
 `successResults`和`errorResults`分别是成功和失败之后支付宝SDK返回的结果，类似如下内容
-
 ```
 // 成功
 {
-	resultStatus: "9000"
+	resultStatus: "9000",
+	memo: "",
+	result: "partner=\"XXXX\"&seller_id=\"XXXX\"&out_trade_no=\"XXXXX\"..."	
 }
 ```
 ```
@@ -40,8 +41,8 @@ window.alipay.pay(  这里填写从服务端获取的签名 , function(successRe
 {
 	memo: "用户中途取消", 
 	resultStatus: "6001", 
+	result: ""	
 }
-
 ```
 
 * resultStatus的含义请参照这个官方文档：[客户端返回码](https://doc.open.alipay.com/doc2/detail?treeId=59&articleId=103671&docType=1)
@@ -54,6 +55,29 @@ window.alipay.pay(  这里填写从服务端获取的签名 , function(successRe
 文档中描述的这一步：`OpenSSL> pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM -nocrypt`会将生成的私钥**打印到屏幕上**，记得复制下来。
 
 
+## 手动安装
+1. 使用git命令将插件下载到本地，并标记为$CORDOVA_PLUGIN_DIR
+
+		git clone https://github.com/charleyw/cordova-plugin-alipay.git && cd cordova-plugin-alipay && export CORDOVA_PLUGIN_DIR=$(pwd)
+		
+2. 修改$CORDOVA_PLUGIN_DIR/plugin.xml，删除下面这一行：
+
+		<preference name="PRIVATE_KEY"/>
+		
+2. 修改$CORDOVA_PLUGIN_DIR/plugin.xml，将
+
+		<preference name="privatekey" value="$PRIVATE_KEY" />
+改成
+
+		<preference name="privatekey" value="你生成的private key的内容"/>
+
+	**注意**：总共有两处
+3. 安装
+
+		cordova plugin add $CORDOVA_PLUGIN_DIR --variable PARTNER_ID=[你的商户PID可以在账户中查询] --variable SELLER_ACCOUNT=[你的商户支付宝帐号]
+
+
 ## Liscense
 
 © 2015 Wang Chao. This code is distributed under the MIT license.
+
