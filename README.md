@@ -1,5 +1,4 @@
 感谢这位大神在Github上开源了这款插件https://github.com/charleyw/cordova-plugin-alipay
-
 本插件在此基础上做了些许修改（从服务端获取签名，调用支付宝）,如果使用者使用客服端生成签名，请参考上方GitHub地址
 ======
 
@@ -13,14 +12,13 @@
 
 * iOS
 * Android
+
+
 ## 手动安装（Cordova > v5.1.1）
 使用git命令将插件下载到本地，并标记为$CORDOVA_PLUGIN_DIR
    1：git clone https://github.com/wangxiaochuan366/cordova_alipay.git && cd cordova-plugin-alipay && export CORDOVA_PLUGIN_DIR=$(pwd)
    2：cordova plugin add $CORDOVA_PLUGIN_DIR --variable PARTNER_ID=[你的商户PID可以在账户中查询] --variable SELLER_ACCOUNT=[你的商户支付宝帐号]
 
-<!-- ## 自动安装（Cordova > v5.1.1）
-
-	cordova plugin add https://github.com/charleyw/cordova-plugin-alipay.git --variable PARTNER_ID=[你的商户PID可以在账户中查询] --variable SELLER_ACCOUNT=[你的商户支付宝帐号] --variable PRIVATE_KEY=[你生成的private key] -->
 
 **注意**：PRIVATE_KEY的值是生成的私钥的**内容**，要求是*PKCS*格式，需要去掉——BEGIN PRIVAT KEY——和——END PRIVATE KEY——，以及*空格*和*换行*。关于私钥的说明详见下面<a href='#关于私钥'>关于私钥</a>部分
 
@@ -34,27 +32,18 @@ window.alipay.pay(  这里填写从服务端获取的签名 , function(successRe
 ```
 ### 参数说明
 
-<!-- * tradeNo 这个是支付宝需要的商家支付单号，应该是一个自己生成唯一的ID号
-* subject 这个字段会显示在支付宝付款的页面
-* body 订单详情，没找到会显示哪里
-* price 价格，支持两位小数
-* function(successResults){} 是成功之后的回调函数
-* function(errorResults){} 是失败之后的回调函数 -->
 `successResults`和`errorResults`分别是成功和失败之后支付宝SDK返回的结果，类似如下内容
 
 ```
 // 成功
 {
 	resultStatus: "9000",
-	memo: "",
-	result: "partner=\"XXXX\"&seller_id=\"XXXX\"&out_trade_no=\"XXXXX\"..."	
 }
 ```
 // 用户取消
 {
 	memo: "用户中途取消", 
 	resultStatus: "6001", 
-	result: ""	
 }
 ```
 
