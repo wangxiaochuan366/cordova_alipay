@@ -55,8 +55,5 @@ window.alipay.pay(下单后从服务端返回的sign等信息, function(successR
 
 文档中描述的这一步：`OpenSSL> pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM -nocrypt`会将生成的私钥**打印到屏幕上**，记得复制下来。
 
-
-
 ## Liscense
-
 © 2015 Wang Chao. This code is distributed under the MIT license.
