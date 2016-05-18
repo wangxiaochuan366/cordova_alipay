@@ -1,6 +1,5 @@
-感谢这位大神在Github上开源了这款插件https://github.com/charleyw/cordova-plugin-alipay
-本插件在此基础上做了些许修改（从服务端获取签名，调用支付宝）,如果使用者使用客服端生成签名，请参考上方GitHub地址
-
+感谢这位大神在Github上开源了这款插件https://github.com/charleyw/cordova-plugin-alipay 本插件在此基础上做了些许修改（从服务端获取签名，调用支付宝）,如果使用者使用客服端生成签名，请参考上方GitHub地址
+======
 
 ## 最新更新
 
@@ -19,28 +18,33 @@
 
 **注意**：PRIVATE_KEY的值是生成的私钥的**内容**，要求是**PKCS**格式，需要去掉——-BEGIN PRIVAT KEY——-和——-END PRIVATE KEY——-，以及**空格**和**换行**。关于私钥的说明详见下面<a href='#关于私钥'>关于私钥</a>部分
 
-
 ## 使用方法
- 
-  由于使用的客服端生成签名，所以在调用pay方法之前，先ajax从服务端获取签名，然后在获取的签名放在pay方法里，然后会调出支付宝...
-window.alipay.pay(  这里填写从服务端获取的签名 , function(successResults){alert(successResults)}, function(errorResults){alert(errorResults)});
 ```
+window.alipay.pay(, function(successResults){alert(successResults)}, function(errorResults){alert(errorResults)});
+```
+**注意**:由于使用的客服端生成签名，所以在调用pay方法之前，先ajax从服务端获取签名，然后在获取的签名放在pay方法里，然后会调出支付宝
+
 ### 参数说明
+
 
 `successResults`和`errorResults`分别是成功和失败之后支付宝SDK返回的结果，类似如下内容
 
-
- 成功
+```
+// 成功
 {
-	resultStatus: "9000"
+	resultStatus: "9000",
+	memo: "",
+	result: "partner=\"XXXX\"&seller_id=\"XXXX\"&out_trade_no=\"XXXXX\"..."	
 }
-
- 用户取消
+```
+```
+// 用户取消
 {
 	memo: "用户中途取消", 
 	resultStatus: "6001", 
+	result: ""	
 }
-
+```
 
 * resultStatus的含义请参照这个官方文档：[客户端返回码](https://doc.open.alipay.com/doc2/detail?treeId=59&articleId=103671&docType=1)
 * memo：一般是一些纯中文的解释，出错的时候会有内容。
@@ -50,6 +54,7 @@ window.alipay.pay(  这里填写从服务端获取的签名 , function(successRe
 这里用的私钥一定是**PKCS**格式的，详细生成步骤请参照官方文档：[RSA私钥及公钥生成](https://doc.open.alipay.com/doc2/detail.htm?spm=0.0.0.0.WSkmo8&treeId=58&articleId=103242&docType=1)  
 
 文档中描述的这一步：`OpenSSL> pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM -nocrypt`会将生成的私钥**打印到屏幕上**，记得复制下来。
+
 
 
 ## Liscense
